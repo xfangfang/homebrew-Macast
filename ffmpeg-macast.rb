@@ -9,6 +9,11 @@ class FfmpegMacast < Formula
   sha256 "7bfff0c1e2179892f8b735961599daf35e2bffa26ee99dd9a29765a5a157b5f9"
   head "https://github.com/xfangfang/FFmpeg.git", branch: "patch/hls_4.4"
 
+  keg_only <<EOS
+it is intended to only be used for building Macast.
+This formula is not recommended for daily use and has no binaraies (ffmpeg, ffplay etc.)
+EOS
+
   depends_on "nasm" => :build
   depends_on "pkg-config" => :build
   depends_on "dav1d"

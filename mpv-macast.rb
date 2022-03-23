@@ -9,6 +9,8 @@ class MpvMacast < Formula
   sha256 "32ded8c13b6398310fa27767378193dc1db6d78b006b70dbcbd3123a1445e746"
   head "https://github.com/mpv-player/mpv.git", branch: "master"
 
+  keg_only "it is intended to only be used for building Macast. This formula is not recommended for daily use"
+
   depends_on "docutils" => :build
   depends_on "pkg-config" => :build
   depends_on "python@3.9" => :build
