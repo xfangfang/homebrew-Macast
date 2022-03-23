@@ -6,32 +6,33 @@ This repo contains custom mpv and ffmpeg homebrew tap for Macast.
 
 ### Casks/macast-dev.rb
 
-Install Macast.app (dev version)
+If you want to install the official version, just run: `brew install macast`
+
+If you want to install the development version of Macast.app:
 
 ```
 brew tap xfangfang/Macast
 brew install macast-dev
 ```
 
-If you want to install the official version, please run: `brew install macast`
 
 ### mpv-macast.rb
 
-Depends on ffmpeg-macast instead of ffmpeg
+Depends on ffmpeg-macast instead of ffmpeg  
 Does not depend on vapoursynth and yt-dlp
 
 
 ### ffmpeg-macast.rb
 
-Removed all encoding libraries
-Removed some of the decoding libraries which ffmpeg can natively decode
+Removed all encoding libraries  
+Removed some of the decoding libraries which ffmpeg can natively decode  
 Patch for some HLS video (For personal use, the release version of Macast.app does not contain this modification)
 
 ## Others
 
 ### build mpv for Macast.app
 
-If you want to build macast locally App may refer to the following content
+If you want to build Macast.app locally, refer to the following content.
 
 ##### step 1: build Macast.app (without mpv)
 
