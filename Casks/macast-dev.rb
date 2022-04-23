@@ -30,27 +30,14 @@ cask "macast-dev" do
   
   postflight do
     system_command "echo",
-                   args: ["-e", "\033[34;6m==> \033[0m\033[1mLinking Binary 'Macast' to '/usr/local/bin/macast'\033[0m"]
-    system_command "echo",
-                   args: ["#{appdir}/Macast.app/Contents/MacOS/Macast", ">", "$(brew --prefix)/bin/macast"]
-    system_command "chmod",
-                   args: ["u+x", "$(brew --prefix)/bin/macast"]
-    system_command "echo",
                    args: ["-e", "\033[32;6m==> \033[0m\033[1mUntag \033[32;1m'com.apple.quarantine'\033[0m"]
     system_command "echo",
                    args: ["-e", "\033[34;6m==> \033[0m\033[1mMacast.app is not signed by a developer license, so it needs your permission to run.\033[0m"]
     system_command "echo",
-                   args: ["-e", "\033[34;6m==> \033[0m\033[1mRunning: 'sudo xattr -rd com.apple.quarantine /Applications/Macast.app' Press ctrl-c to skip\033[0m"]
+                   args: ["-e", "\033[34;6m==> \033[0m\033[1mRunning: 'sudo xattr -rd com.apple.quarantine /Applications/Macast.app'\033[0m"]
     system_command "xattr",
                    args: ["-rd", "com.apple.quarantine", "#{appdir}/Macast.app"],
                    sudo: true
-  end
-  
-  uninstall_postflight do
-    system_command "echo",
-                   args: ["-e", "\033[34;6m==> \033[0m\033[1mUnlinking Binary '/usr/local/bin/macast'\033[0m"]
-    system_command "rm",
-                   args: ["$(brew --prefix)/bin/macast"]
   end
 
   zap trash: [
