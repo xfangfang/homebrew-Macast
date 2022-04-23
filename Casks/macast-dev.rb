@@ -28,16 +28,28 @@ cask "macast-dev" do
 
   app "Macast.app"
   
+  shimscript = "#{staged_path}/macast.wrapper.sh"
+  binary shimscript, target: "macast"
+  
+  preflight do
+    File.write shimscript, <<~EOS
+      #!/bin/bash
+      exec '#{appdir}/Macast.app/Contents/MacOS/Macast' "$@"
+    EOS
+  end
+  
   postflight do
-    system_command "echo",
-                   args: ["-e", "\033[32;6m==> \033[0m\033[1mUntag \033[32;1m'com.apple.quarantine'\033[0m"]
-    system_command "echo",
-                   args: ["-e", "\033[34;6m==> \033[0m\033[1mMacast.app is not signed by a developer license, so it needs your permission to run.\033[0m"]
-    system_command "echo",
-                   args: ["-e", "\033[34;6m==> \033[0m\033[1mRunning: 'sudo xattr -rd com.apple.quarantine /Applications/Macast.app'\033[0m"]
     system_command "xattr",
                    args: ["-rd", "com.apple.quarantine", "#{appdir}/Macast.app"],
                    sudo: true
+  end
+  
+  caveats do
+    unsigned_accessibility
+    <<~EOS
+       Macast.app is not signed by a developer license, so it needs your permission to run:
+         'sudo xattr -rd com.apple.quarantine /Applications/Macast.app'
+     EOS
   end
 
   zap trash: [
