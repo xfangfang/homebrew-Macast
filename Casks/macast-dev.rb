@@ -47,7 +47,8 @@ cask "macast-dev" do
   caveats do
     unsigned_accessibility
     <<~EOS
-       Macast.app is not signed by a developer license, so it needs your permission to run:
+       Macast.app is not signed by a developer license, so it will need your permission to finish the installtion.
+       We will run the following command to remove the quarantine tag:
          'sudo xattr -rd com.apple.quarantine /Applications/Macast.app'
      EOS
   end
