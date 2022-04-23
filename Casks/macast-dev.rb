@@ -4,7 +4,7 @@ cask "macast-dev" do
   version "0.7.0,dev-8d53e51"
   
   if Hardware::CPU.intel?
-     sha256 "283322af8458b3eaa3367b0e9c970f5b8f96b452082a2202808710b63132aa46"
+    sha256 "283322af8458b3eaa3367b0e9c970f5b8f96b452082a2202808710b63132aa46"
   else
     sha256 "201e93340236b07904a30c64984abf5a855442686be8efeec8bbf70af680077c"
   end
@@ -20,12 +20,20 @@ cask "macast-dev" do
     strategy :github_latest
   end
   
+  auto_updates true
+  
   conflicts_with cask: "macast"
 
   depends_on macos: ">= :mojave"
 
   app "Macast.app"
   binary "#{appdir}/Macast.app/Contents/MacOS/Macast", target: "macast"
+  
+  postflight do
+    system_command "xattr",
+                   args: ["-rd", "com.apple.quarantine", "#{appdir}/Macast.app"],
+                   sudo: true
+  end
 
   zap trash: [
     "~/Library/Logs/Macast",
