@@ -6,7 +6,7 @@ class FfmpegMacast < Formula
   desc "Play, record, convert, and stream audio and video"
   homepage "https://ffmpeg.org/"
   url "https://github.com/xfangfang/FFmpeg/archive/patch/hls_4.4.zip"
-  sha256 "7bfff0c1e2179892f8b735961599daf35e2bffa26ee99dd9a29765a5a157b5f9"
+  sha256 "eb099f8725a2a178215b8c2e05b34e76c37fc9d1f798d8fd57c6a9c5051de0bc"
   head "https://github.com/xfangfang/FFmpeg.git", branch: "patch/hls_4.4"
 
   keg_only <<EOS
